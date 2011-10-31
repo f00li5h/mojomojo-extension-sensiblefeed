@@ -1,0 +1,30 @@
+# Extension::SensibleFeed - a feed of articles rather than patches.
+
+This adds a .feed action to a mojomojo wiki, it needs to be in @INC when the db is deployed, when the wiki is started, and when you run mojomojo_cli.
+
+TODO: There is currently no UI for the feed, but comes with some extra ::Commands to go with mojomojo_cli ( found in f00li5h/mojomojo-tools )
+
+The plugins allow you to:
+	- add pages to the feed (optionally specifying dates)
+	- import ids and mod dates from an existing feed
+		(incase your blog disappeared without warning, and all you have is the feedbuner mirror of your old rss feed)
+
+
+# LOOK OUT!!@!
+
+I would say this software is alpha grade, but that would give alpha software a bad name.
+it worked for me though ^_^
+
+
+# USAGE
+
+1. clone the repo (to somewhere with the rest of your mojomojo stuff, most likely)
+2. put lib/ it in PERL5LIB 
+3. call mojomojo_spawn_db.pl 
+	yep, you need to create the database again, since this contains a MojoMojo::Schema::Result
+	TODO: I will include directions to use ::DeploymentHandler here when I figure it out
+4. check that a table called page_in_feed is created (since that's where the feed looks)
+5. make sure lib/ is also in @INC for your mojomojo instance (so the ::Extensions::SensibleFeed is seen/loaded by MojoMojo)
+6. hit http://yourwiki/.feed and receive a blank, nearly useless atom feed (with your wiki's name in the title)
+7. now you can mess around with mojomojo_cli to get stuff into your feed... the commands this package provides are all called sf_*
+
