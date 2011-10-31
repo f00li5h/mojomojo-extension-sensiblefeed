@@ -1,4 +1,4 @@
-package MojoMojo::CLI::Command::SensibleFeed;
+package MojoMojo::CLI::Command::SF_by_page;
 
 use MojoMojo::CLI -command;
 use strict; use warnings;
@@ -80,7 +80,7 @@ sub execute {
 	my %sensible;
 	my $feed_entry = $page->in_feed;
 
-	return warn "lol, that's not in a feed" if not defined $feed_entry and not keys %update;
+	return warn "lol, that's not in a feed" if not defined $feed_entry and not keys %update and not $opt->{touch};
 	if ($opt->{'touch'}){
 		$sensible{feed_modified} = $page->content->created ||   DateTime->now();
 		$sensible{feed_issued }  = DateTime->now();
